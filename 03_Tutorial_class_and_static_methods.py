@@ -9,6 +9,7 @@ import logging
 from platform import python_version
 from sys import hexversion
 from datetime import datetime as dt
+import datetime
 
 NOW = dt.today()
 PRINT_VERSION_INFO = True
@@ -52,71 +53,92 @@ class Employee():
         """Docstring."""
         self.pay = int(self.pay * self.raise_amount)
 
+    @classmethod
+    def set_raise_amount(cls, amount):
+        """Docstring."""
+        cls.raise_amount = amount
+
+    @classmethod
+    def from_string(cls, emp_str):
+        """Docstring."""
+        first, last, pay = emp_str.split("-")
+        return cls(first, last, pay)
+
+    # @staticmethod
+    # def is_workday(day):
+    #     """Docstring."""
+    #     if (day.weekday() == 6) or (day.weekday() == 6):
+    #         return False
+    #     return True
+
+    # @staticmethod
+    # def is_workday(day):
+    #     """Docstring."""
+    #     return day.weekday() != 6 or day.weekday() != 6
+
+    # @staticmethod
+    # def is_workday(day):
+    #     """Docstring."""
+    #     return day.weekday() not in (5, 6)
+
+    # @staticmethod
+    # def is_workday(day):
+    #     """Docstring."""
+    #     return day.weekday() in (0, 1, 2, 3, 4)
+
+    @staticmethod
+    def is_workday(day):
+        """Docstring."""
+        return day.weekday() in range(5)
+
 
 emp_1 = Employee('Corey', 'Schafer', 50000)
 emp_2 = Employee('Test', 'User', 60000)
 
-print("", "-" * 88, "\n")
-print("", emp_1.email)
-print("", emp_2.email)
-print("\n", "-" * 88)
+emp_str_1 = 'John-Doe-70000'
+emp_str_2 = 'Steve-Smith-30000'
+emp_str_3 = 'Jane-Doe-90000'
 
-print("", "-" * 88, "\n")
-print("", emp_1.full_name())
-print("", emp_2.full_name())
-print("\n", "-" * 88)
-
-'''
-# print("", Employee.email(emp_1))
-
-    Traceback (most recent call last):
-    File "./02_Tutorial_Classes_variables.py", line 60, in <module>
-        print("", Employee.email(emp_1))
-    AttributeError: type object 'Employee' has no attribute 'email'
-'''
-
-print("", "-" * 88, "\n")
-print("", Employee.full_name(emp_1))
-print("", Employee.full_name(emp_2))
-print("\n", "-" * 88)
+new_emp_1 = Employee.from_string(emp_str_1)
+new_emp_2 = Employee.from_string(emp_str_2)
+new_emp_3 = Employee.from_string(emp_str_3)
 
 print("", "-" * 88, "\n")
 print(Employee.raise_amount)
-print("", emp_1.pay)
-emp_1.apply_raise()
-print("", emp_1.pay)
 print(emp_1.raise_amount)
+print(emp_2.raise_amount)
 print("\n", "-" * 88)
 
-print("", "-" * 88, "\n")
-print("", emp_1.__dict__)
-print("\n", "-" * 88)
-
-print("", "-" * 88, "\n")
-print("", Employee.__dict__)
-print("\n", "-" * 88)
-
-Employee.raise_amount = 1.05
+Employee.set_raise_amount(1.05)
 
 print("", "-" * 88, "\n")
 print(Employee.raise_amount)
-print("", emp_1.pay)
-emp_1.apply_raise()
-print("", emp_1.pay)
 print(emp_1.raise_amount)
-print("\n", "-" * 88)
-
-Employee.raise_amount = 1.04
-emp_1.raise_amount = 1.05
-
-print("", "-" * 88, "\n")
-print(Employee.raise_amount)
-print("", emp_1.pay)
-emp_1.apply_raise()
-print("", emp_1.pay)
-print(emp_1.raise_amount)
+print(emp_2.raise_amount)
 print("\n", "-" * 88)
 
 print("", "-" * 88, "\n")
-print(" Number of employees:", Employee.number_of_employees)
+print(new_emp_1.email)
+print(new_emp_1.pay)
+print(new_emp_1.full_name())
+print("\n", "-" * 88)
+
+print("", "-" * 88, "\n")
+print(new_emp_2.email)
+print(new_emp_2.pay)
+print(new_emp_2.full_name())
+print("\n", "-" * 88)
+
+print("", "-" * 88, "\n")
+print(new_emp_3.email)
+print(new_emp_3.pay)
+print(new_emp_3.full_name())
+print("\n", "-" * 88)
+
+my_date1 = datetime.date(2016, 7, 10)
+my_date2 = datetime.date(2016, 7, 11)
+
+print("", "-" * 88, "\n")
+print(Employee.is_workday(my_date1))
+print(Employee.is_workday(my_date2))
 print("\n", "-" * 88)
