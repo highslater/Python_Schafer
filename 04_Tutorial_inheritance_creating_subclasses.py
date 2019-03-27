@@ -9,7 +9,7 @@ import logging
 from platform import python_version
 from sys import hexversion
 from datetime import datetime as dt
-import datetime
+# import datetime
 
 NOW = dt.today()
 PRINT_VERSION_INFO = True
@@ -64,92 +64,23 @@ class Employee():
         first, last, pay = emp_str.split("-")
         return cls(first, last, pay)
 
-    # @staticmethod
-    # def is_workday(day):
-    #     """Docstring."""
-    #     if (day.weekday() == 6) or (day.weekday() == 6):
-    #         return False
-    #     return True
-
-    # @staticmethod
-    # def is_workday(day):
-    #     """Docstring."""
-    #     return day.weekday() != 6 or day.weekday() != 6
-
-    # @staticmethod
-    # def is_workday(day):
-    #     """Docstring."""
-    #     return day.weekday() not in (5, 6)
-
-    # @staticmethod
-    # def is_workday(day):
-    #     """Docstring."""
-    #     return day.weekday() in (0, 1, 2, 3, 4)
-
     @staticmethod
     def is_workday(day):
         """Docstring."""
         return day.weekday() in range(5)
 
 
-emp_1 = Employee('Corey', 'Schafer', 50000)
-emp_2 = Employee('Test', 'User', 60000)
+class Developer(Employee):
+    """docstring for Developer."""
 
-emp_str_1 = 'John-Doe-70000'
-emp_str_2 = 'Steve-Smith-30000'
-emp_str_3 = 'Jane-Doe-90000'
+    pass
 
-new_emp_1 = Employee.from_string(emp_str_1)
-new_emp_2 = Employee.from_string(emp_str_2)
-new_emp_3 = Employee.from_string(emp_str_3)
 
-print("", "-" * 88, "\n")
-print(Employee.raise_amount)
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-print("\n", "-" * 88)
-
-Employee.set_raise_amount(1.05)
-
-print("", "-" * 88, "\n")
-print(Employee.raise_amount)
-print(emp_1.raise_amount)
-print(emp_2.raise_amount)
-print("\n", "-" * 88)
-
-print("", "-" * 88, "\n")
-print(new_emp_1.email)
-print(new_emp_1.pay)
-print(new_emp_1.full_name())
-print("\n", "-" * 88)
-
-print("", "-" * 88, "\n")
-print(new_emp_2.email)
-print(new_emp_2.pay)
-print(new_emp_2.full_name())
-print("\n", "-" * 88)
-
-print("", "-" * 88, "\n")
-print(new_emp_3.email)
-print(new_emp_3.pay)
-print(new_emp_3.full_name())
-print("\n", "-" * 88)
-
-my_date1 = datetime.date(2016, 7, 10)
-my_date2 = datetime.date(2016, 7, 11)
-my_date3 = datetime.date(2016, 7, 12)
-my_date4 = datetime.date(2016, 7, 13)
-my_date5 = datetime.date(2016, 7, 14)
-my_date6 = datetime.date(2016, 7, 15)
-my_date7 = datetime.date(2016, 7, 16)
+dev_1 = Employee('Corey', 'Schafer', 50000)
+dev_2 = Employee('Test', 'Employee', 60000)
 
 
 print("", "-" * 88, "\n")
-print(Employee.is_workday(my_date1))
-print(Employee.is_workday(my_date2))
-print(Employee.is_workday(my_date3))
-print(Employee.is_workday(my_date4))
-print(Employee.is_workday(my_date5))
-print(Employee.is_workday(my_date6))
-print(Employee.is_workday(my_date7))
+print(dev_1.email)
+print(dev_2.email)
 print("\n", "-" * 88)
