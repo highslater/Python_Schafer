@@ -71,16 +71,146 @@ class Employee():
 
 
 class Developer(Employee):
-    """docstring for Developer."""
+    """Docstring for Developer."""
 
-    pass
+    raise_amount = 1.10
+
+    def __init__(self, first, last, pay, prog_lang):
+        """Docstring."""
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang
 
 
-dev_1 = Employee('Corey', 'Schafer', 50000)
-dev_2 = Employee('Test', 'Employee', 60000)
+class Manager(Employee):
+    """Docstring for Manager."""
 
+    def __init__(self, first, last, pay, employees=None):
+        """Docstring."""
+        super().__init__(first, last, pay)
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+
+    def add_employee(self, emp):
+        """Docstring."""
+        if emp not in self.employees:
+            self.employees.append(emp)
+
+    def remove_employee(self, emp):
+        """Docstring."""
+        if emp in self.employees:
+            self.employees.remove(emp)
+
+    def print_employees(self):
+        """Docstring."""
+        for emp in self.employees:
+            print('-->', emp.full_name())
+
+
+dev_1 = Developer('Corey', 'Schafer', 50000, 'Python')
+dev_2 = Developer('Test', 'Employee', 60000, 'Java')
+
+mgr_1 = Manager('Sue', 'Smith', 90000, [dev_1])
+mgr_1.add_employee(dev_2)
 
 print("", "-" * 88, "\n")
 print(dev_1.email)
 print(dev_2.email)
 print("\n", "-" * 88)
+
+print("", "-" * 88, "\n")
+print(dev_1.pay)
+dev_1.apply_raise()
+print(dev_1.pay)
+print("\n", "-" * 88)
+
+print("", "-" * 88, "\n")
+print(dev_1.email)
+print(dev_1.prog_lang)
+print("\n", "-" * 88)
+
+print("", "-" * 88, "\n")
+print(mgr_1.full_name())
+print(mgr_1.email)
+print(mgr_1.pay)
+mgr_1.print_employees()
+print("\n", "-" * 88)
+
+mgr_1.remove_employee(dev_1)
+
+print("", "-" * 88, "\n")
+print(mgr_1.full_name())
+print(mgr_1.email)
+print(mgr_1.pay)
+mgr_1.print_employees()
+print("\n", "-" * 88)
+
+print("", "-" * 88, "\n")
+print(isinstance(mgr_1, Employee))
+print(isinstance(mgr_1, Manager))
+print(isinstance(mgr_1, Developer))
+
+print(issubclass(Developer, Employee))
+print(issubclass(Manager, Manager))
+print(issubclass(Manager, Developer))
+print("\n", "-" * 88)
+
+# print("", "-" * 88, "\n")
+# print(help(Developer))
+# print("\n", "-" * 88)
+
+
+# Help on class Developer in module __main__:
+
+# class Developer(Employee)
+#  |  Developer(first, last, pay)
+#  |
+#  |  docstring for Developer.
+#  |
+#  |  Method resolution order:
+#  |      Developer
+#  |      Employee
+#  |      builtins.object
+#  |
+#  |  Methods inherited from Employee:
+#  |
+#  |  __init__(self, first, last, pay)
+#  |      Docstring.
+#  |
+#  |  apply_raise(self)
+#  |      Docstring.
+#  |
+#  |  full_name(self)
+#  |      Docstring.
+#  |
+#  |  ----------------------------------------------------------------------
+#  |  Class methods inherited from Employee:
+#  |
+#  |  from_string(emp_str) from builtins.type
+#  |      Docstring.
+#  |
+#  |  set_raise_amount(amount) from builtins.type
+#  |      Docstring.
+#  |
+#  |  ----------------------------------------------------------------------
+#  |  Static methods inherited from Employee:
+#  |
+#  |  is_workday(day)
+#  |      Docstring.
+
+#  |  ----------------------------------------------------------------------
+#  |  Data descriptors inherited from Employee:
+#  |
+#  |  __dict__
+#  |      dictionary for instance variables (if defined)
+#  |
+#  |  __weakref__
+#  |      list of weak references to the object (if defined)
+#  |
+#  |  ----------------------------------------------------------------------
+#  |  Data and other attributes inherited from Employee:
+#  |
+#  |  number_of_employees = 2
+#  |
+#  |  raise_amount = 1.04
